@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     triggers {
-        pollSCM('* * * * *')   // poll every 1 minute
+        pollSCM('* * * * *')
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -16,8 +17,10 @@ pipeline {
             steps {
                 bat '''
                     echo WORKSPACE=%WORKSPACE%
-                    cd src\\hello
-                    javac Hello.java
+                    cd src
+
+                    echo Compiling Java project...
+                    javac hello/Hello.java
                 '''
             }
         }
@@ -25,8 +28,10 @@ pipeline {
         stage('Run') {
             steps {
                 bat '''
-                    cd src\\hello
-                    java hello.Hello
+                    cd src
+                    echo Running app...
+
+                    java -cp . hello.Hello
                 '''
             }
         }
