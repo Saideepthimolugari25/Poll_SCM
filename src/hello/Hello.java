@@ -2,5 +2,6 @@ package hello;
 public class Hello{
     public static void main(String args[]){
         System.out.println("Hello from pollscm");
+        System.out.println("This is to check pollscm trigger");
     }
 }
